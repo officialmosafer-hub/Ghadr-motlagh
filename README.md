@@ -1,0 +1,2 @@
+# Ghadr-motlagh
+قدر مطلق 
