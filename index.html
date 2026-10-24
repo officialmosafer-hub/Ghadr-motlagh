@@ -1,0 +1,645 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#17183f">
+<title>آزمایشگاه مجازی قدر مطلق | ریاضی نهم</title>
+<style>
+:root{
+  --bg:#f3f5fc;--paper:#fff;--ink:#202443;--muted:#747b98;
+  --navy:#17183f;--purple:#6855df;--cyan:#08a9bb;
+  --mint:#dff9f2;--yellow:#ffcb69;--pink:#ff7198;
+  --line:#e5e8f3;--green:#12815e;--red:#cf3559;
+  --shadow:0 14px 38px #22285b0e;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:
+radial-gradient(ellipse at 0% 5%,#e5e9ff 0,transparent 35%),
+radial-gradient(ellipse at 100% 30%,#dff9f4 0,transparent 30%),var(--bg);
+font-family:Tahoma,"Segoe UI",sans-serif;color:var(--ink);line-height:1.9}
+button,input,select{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+.topbar{position:sticky;top:0;z-index:20;background:#17183fee;
+backdrop-filter:blur(14px);color:white;border-bottom:1px solid #ffffff18}
+.topinner{max-width:1200px;margin:auto;padding:12px 20px;display:flex;
+align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:bold}
+.brandicon{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#9d8dff,#00c8c0);
+display:grid;place-items:center;font-size:23px;color:#17183f}
+.brand small{display:block;font-size:11px;color:#c7c9ed;font-weight:normal}
+.toplinks{display:flex;gap:7px;flex-wrap:wrap}
+.toplinks a{font-size:12px;padding:6px 10px;border-radius:9px;color:#e4e5ff}
+.toplinks a:hover{background:#ffffff18}
+.hero{position:relative;overflow:hidden;background:linear-gradient(125deg,#17183f 0%,#4034a2 55%,#078b9d 100%);color:white}
+.hero:before,.hero:after{content:"";position:absolute;border:1px solid #ffffff19;border-radius:50%;pointer-events:none}
+.hero:before{width:390px;height:390px;left:-100px;top:-230px;box-shadow:0 0 0 35px #ffffff08,0 0 0 75px #ffffff05}
+.hero:after{width:230px;height:230px;right:-100px;bottom:-170px}
+.heroinner{max-width:1100px;margin:auto;padding:48px 22px 52px;display:grid;
+grid-template-columns:1.5fr 1fr;gap:30px;align-items:center;position:relative;z-index:1}
+.kicker{display:inline-block;background:#ffffff18;border:1px solid #ffffff2b;border-radius:30px;
+padding:4px 13px;font-size:12px}
+.hero h1{font-size:clamp(29px,5vw,48px);line-height:1.45;margin:15px 0}
+.hero p{color:#e2e5ff;max-width:650px}
+.hero .sub{font-size:13px;color:#d3d7fa}
+.heroart{min-height:210px;display:grid;place-items:center;position:relative}
+.orbit{width:200px;height:200px;border:1px solid #ffffff42;border-radius:50%;
+display:grid;place-items:center;position:relative}
+.orbit:before{content:"";position:absolute;inset:20px;border:1px dashed #ffffff52;border-radius:50%}
+.bigabs{font-size:94px;font-weight:bold;color:#fff;text-shadow:0 0 35px #8e9fff66}
+.floatnum{position:absolute;border-radius:15px;background:#ffffff19;backdrop-filter:blur(8px);
+padding:6px 15px;font-size:20px;font-weight:bold}
+.n1{top:4px;right:5px;color:#ffdf91}.n2{bottom:8px;left:0;color:#9bfff0}
+.n3{top:42%;left:-16px;color:#ffc0d4}
+.wrap{max-width:1200px;margin:26px auto;padding:0 18px 45px;
+display:grid;grid-template-columns:245px minmax(0,1fr);gap:22px;align-items:start}
+.sidebar{position:sticky;top:83px;background:#ffffffd9;backdrop-filter:blur(8px);
+border:1px solid var(--line);border-radius:20px;padding:17px;box-shadow:var(--shadow)}
+.sidehead{font-size:12px;color:var(--muted);margin:0 0 10px}
+.nav{display:grid;gap:5px}
+.nav a{padding:9px 10px;border-radius:11px;font-size:13px;transition:.2s}
+.nav a:hover,.nav a.active{background:#eeedff;color:#5141c7}
+.sideprogress{margin-top:19px;padding-top:14px;border-top:1px solid var(--line)}
+.progress{height:9px;background:#e9ebf5;border-radius:20px;overflow:hidden}
+.progress span{height:100%;display:block;width:0;background:linear-gradient(90deg,#8b5cf6,#06b6b4);transition:.35s}
+.small{font-size:12px;color:var(--muted)}
+main{min-width:0;display:grid;gap:19px}
+.card{background:var(--paper);border:1px solid #e4e8f3;border-radius:22px;
+padding:clamp(17px,3vw,28px);box-shadow:var(--shadow);position:relative;overflow:hidden}
+.cardhead{display:flex;align-items:flex-start;gap:12px;margin-bottom:15px}
+.numicon{flex:0 0 43px;width:43px;height:43px;border-radius:14px;
+display:grid;place-items:center;background:#eeecff;color:#5443c6;font-size:21px}
+.card h2{font-size:clamp(19px,3vw,25px);margin:0 0 4px;line-height:1.6}
+.card h3{font-size:17px;margin:15px 0 7px}
+.lead{font-size:14px;color:var(--muted);margin:3px 0 18px}
+.formula{direction:ltr;text-align:center;background:linear-gradient(120deg,#f0efff,#e7fbf8);
+border:1px solid #e0e3fb;border-radius:16px;padding:17px 12px;font-size:clamp(20px,4vw,29px);
+font-weight:bold;color:#37317f;margin:14px 0}
+.note,.feedback{border-radius:13px;padding:12px 14px;font-size:13px;margin-top:12px}
+.note{background:#fff8e7;border-right:4px solid #f3bd4d}
+.feedback{display:none;background:#f1f5ff;border:1px solid #dfe5f9}
+.feedback.show{display:block}
+.good{background:#e5f9f0;border-color:#bdebd7;color:#126c50}
+.bad{background:#fff0f3;border-color:#f4cad4;color:#9f2445}
+.controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:13px 0}
+.range{width:100%;accent-color:var(--purple);cursor:pointer}
+.numberpill{background:#f0efff;color:#4c3cba;border:1px solid #dcd7ff;
+border-radius:12px;padding:5px 14px;font-weight:bold;min-width:64px;text-align:center}
+.btn{border:0;border-radius:12px;background:linear-gradient(115deg,#6553df,#4d5fe5);
+color:white;padding:10px 16px;font-size:13px;box-shadow:0 5px 13px #5141c722;transition:.18s}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.05)}
+.btn.alt{background:#eaeafd;color:#4a3bb6;box-shadow:none}
+.btn.cyan{background:linear-gradient(110deg,#089fb2,#08a78c)}
+.btn.gold{background:linear-gradient(110deg,#f7c65c,#f49b4e);color:#453014;box-shadow:none}
+.btn:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #a5b4fc;outline-offset:3px}
+.axisbox{background:linear-gradient(180deg,#fafbff,#f0f8ff);border:1px solid #e2e7f3;
+border-radius:18px;padding:16px 10px 10px;overflow:hidden}
+.axis{width:100%;height:auto;display:block;touch-action:pan-y}
+.axislabel{text-align:center;font-size:12px;color:var(--muted);margin-top:4px}
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin:14px 0}
+.stat{background:linear-gradient(145deg,#fff,#f6f7ff);border:1px solid var(--line);
+border-radius:15px;padding:13px;text-align:center}
+.stat span{display:block;color:var(--muted);font-size:12px}
+.stat strong{display:block;color:#4d40c1;font-size:24px;direction:ltr}
+.stat em{font-style:normal;font-size:11px;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.rule{padding:15px;border:1px solid var(--line);border-radius:15px;background:#fcfcff}
+.rule b{color:#4939ba}
+.rule .math{direction:ltr;text-align:center;font-size:19px;margin:8px 0;color:#292b68}
+.options{display:grid;gap:9px;margin:13px 0}
+.option{width:100%;text-align:right;border:1px solid #dfe3ef;background:white;
+padding:11px 13px;border-radius:12px;font-size:14px;color:var(--ink);transition:.15s}
+.option:hover{border-color:#9990f0;background:#faf9ff}
+.option.selected{border-color:#8171e8;background:#efedff;box-shadow:0 0 0 2px #8171e817}
+.option:disabled{cursor:default}
+.tag{display:inline-block;font-size:11px;background:#e8f9f5;color:#0a7c73;border-radius:30px;padding:3px 10px}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.inputrow{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+.inputrow label{font-size:13px;color:var(--muted)}
+input[type=number],select{border:1px solid #d9deee;border-radius:10px;padding:8px 10px;background:white;color:var(--ink);max-width:100%}
+.answerline{padding:12px;border-radius:13px;background:#f4f5ff;color:#353273;margin-top:12px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:25px 10px}
+@media(max-width:850px){
+ .heroinner{grid-template-columns:1fr;padding-top:35px}.heroart{min-height:165px}.orbit{width:155px;height:155px}.bigabs{font-size:75px}
+ .wrap{grid-template-columns:1fr;margin-top:16px}.sidebar{position:relative;top:auto;padding:12px}
+ .nav{grid-template-columns:repeat(2,minmax(0,1fr))}.nav a{font-size:12px;padding:7px}
+ .sideprogress{margin-top:10px;padding-top:10px}
+}
+@media(max-width:500px){
+ .topinner{padding:9px 12px}.toplinks a{font-size:11px;padding:4px 6px}.brandicon{width:37px;height:37px}
+ .hero h1{font-size:29px}.heroart{min-height:140px}.orbit{width:135px;height:135px}
+ .wrap{padding:0 10px 30px}.card{border-radius:17px;padding:16px}
+ .grid2,.twocol{grid-template-columns:1fr}.duo{gap:7px}.stat{padding:10px 5px}
+ .stat strong{font-size:21px}.controls .btn{flex:1}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topinner">
+    <a href="#" class="brand">
+      <span class="brandicon">|x|</span>
+      <span>آزمایشگاه ریاضی<small>یادگیری با کشف و تجربه</small></span>
+    </a>
+    <nav class="toplinks">
+      <a href="#experiment">آزمایش</a>
+      <a href="#equations">معادلات</a>
+      <a href="#quiz">آزمون</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="heroinner">
+    <div>
+      <span class="kicker">آزمایشگاه مجازی · پایه نهم</span>
+      <h1>قدر مطلق را کشف کن!</h1>
+      <p>از محور اعداد تا معادلات و نامعادلات؛ با مشاهده، آزمایش و استدلال ریاضی یاد بگیر.</p>
+      <p class="sub">یک آزمایشگاه تعاملی برای فهم عمیق، نه فقط حفظ کردن فرمول‌ها.</p>
+      <a class="btn gold" href="#experiment">شروع آزمایش ←</a>
+    </div>
+    <div class="heroart" aria-hidden="true">
+      <div class="orbit"><span class="bigabs">|x|</span>
+        <span class="floatnum n1">+۴</span>
+        <span class="floatnum n2">−۴</span>
+        <span class="floatnum n3">۰</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+<aside class="sidebar">
+  <p class="sidehead">مسیر یادگیری تو</p>
+  <nav class="nav">
+    <a href="#experiment">🧪 ۱. آزمایش محور</a>
+    <a href="#opposites">↔️ ۲. عدد و قرینه</a>
+    <a href="#definition">📘 ۳. تعریف رسمی</a>
+    <a href="#properties">💎 ۴. خواص مهم</a>
+    <a href="#equations">🧮 ۵. معادلات</a>
+    <a href="#inequalities">📏 ۶. نامعادلات</a>
+    <a href="#practice">🎯 ۷. تمرین هوشمند</a>
+    <a href="#quiz">🏆 ۸. چالش پایانی</a>
+  </nav>
+  <div class="sideprogress">
+    <div style="display:flex;justify-content:space-between;gap:6px;font-size:12px;margin-bottom:8px">
+      <b>پیشرفت آزمون</b><span id="progressText">۰٪</span>
+    </div>
+    <div class="progress"><span id="progressBar"></span></div>
+    <p class="small">به هر پرسش پاسخ بده و پیشرفتت را دنبال کن.</p>
+  </div>
+</aside>
+
+<main>
+<section class="card" id="experiment">
+  <div class="cardhead">
+    <div class="numicon">🧪</div>
+    <div><h2>آزمایش اول: فاصله از صفر</h2><p class="lead">نقطه را جابه‌جا کن و تغییر فاصله را مشاهده کن.</p></div>
+  </div>
+  <p>عدد دلخواهت را روی محور انتخاب کن. نقطهٔ نارنجی عدد توست و خط فیروزه‌ای فاصلهٔ آن از صفر را نشان می‌دهد.</p>
+  <div class="controls">
+    <label for="xSlider">عدد انتخابی:</label>
+    <input class="range" id="xSlider" type="range" min="-10" max="10" step="1" value="-4">
+    <span class="numberpill" id="xValue">−۴</span>
+  </div>
+  <div class="axisbox">
+    <svg id="mainAxis" class="axis" viewBox="0 0 600 150" role="img" aria-label="محور اعداد تعاملی">
+      <defs><linearGradient id="distGrad"><stop stop-color="#08a9bb"/><stop offset="1" stop-color="#6855df"/></linearGradient></defs>
+      <line x1="25" y1="77" x2="575" y2="77" stroke="#9aa3bf" stroke-width="2"/>
+      <path d="M25 77 l10 -6 v12 z M575 77 l-10 -6 v12 z" fill="#9aa3bf"/>
+      <g id="axisTicks"></g>
+      <line id="distanceLine" x1="190" y1="77" x2="300" y2="77" stroke="url(#distGrad)" stroke-width="7" stroke-linecap="round"/>
+      <circle cx="300" cy="77" r="6" fill="#6855df"/>
+      <circle id="movingPoint" cx="190" cy="77" r="9" fill="#ff9f43" stroke="#fff" stroke-width="3"/>
+      <text x="300" y="110" font-size="14" text-anchor="middle" fill="#6855df">۰</text>
+      <text id="pointLabel" x="190" y="48" font-size="16" font-weight="bold" text-anchor="middle" fill="#b76b13">−۴</text>
+      <text id="distanceLabel" x="245" y="63" font-size="12" text-anchor="middle" fill="#087f91">۴ واحد</text>
+    </svg>
+    <div class="axislabel">برای آزمایش، لغزنده را به چپ و راست حرکت بده.</div>
+  </div>
+  <div class="duo">
+    <div class="stat"><span>عدد انتخابی x</span><strong id="statX">−۴</strong><em>موقعیت روی محور</em></div>
+    <div class="stat"><span>قدر مطلق |x|</span><strong id="statAbs">۴</strong><em>فاصله از صفر</em></div>
+  </div>
+  <div class="note" id="axisInsight">عدد منفی است، اما فاصله‌اش از صفر مثبت است.</div>
+  <div class="controls">
+    <button class="btn alt" id="randomPoint">🎲 انتخاب عدد تصادفی</button>
+    <button class="btn alt" id="zeroPoint">قرار دادن نقطه روی صفر</button>
+  </div>
+</section>
+
+<section class="card" id="opposites">
+  <div class="cardhead">
+    <div class="numicon">↔️</div>
+    <div><h2>آزمایش دوم: عدد و قرینه</h2><p class="lead">آیا دو عدد متفاوت می‌توانند قدر مطلق یکسان داشته باشند؟</p></div>
+  </div>
+  <p>عدد اول را با لغزنده انتخاب کن. آزمایشگاه عدد مخالف آن را پیدا می‌کند و فاصلهٔ هر دو عدد را مقایسه می‌کند.</p>
+  <div class="duo">
+    <div class="stat"><span>عدد اول</span><strong id="firstOpp">−۴</strong><em id="firstOppAbs">قدر مطلق: ۴</em></div>
+    <div class="stat"><span>قرینهٔ عدد</span><strong id="secondOpp">+۴</strong><em id="secondOppAbs">قدر مطلق: ۴</em></div>
+  </div>
+  <div class="axisbox">
+    <svg id="oppositeAxis" class="axis" viewBox="0 0 600 105" role="img" aria-label="نمایش عدد و قرینه روی محور">
+      <line x1="30" y1="45" x2="570" y2="45" stroke="#a0a8c2" stroke-width="2"/>
+      <g id="oppositeTicks"></g>
+      <circle id="oppA" cx="190" cy="45" r="8" fill="#ff9f43"/>
+      <circle id="oppB" cx="410" cy="45" r="8" fill="#08a9bb"/>
+      <text id="oppALabel" x="190" y="23" text-anchor="middle" fill="#bd761c" font-size="14">−۴</text>
+      <text id="oppBLabel" x="410" y="23" text-anchor="middle" fill="#078394" font-size="14">+۴</text>
+    </svg>
+  </div>
+  <div class="feedback show" id="oppositeFeedback">دو عدد مخالف، فاصلهٔ یکسانی از صفر دارند؛ پس قدر مطلقشان برابر است.</div>
+  <button class="btn cyan" id="explainOpp" style="margin-top:12px">💡 توضیح ریاضی را ببین</button>
+</section>
+
+<section class="card" id="definition">
+  <div class="cardhead">
+    <div class="numicon">📘</div>
+    <div><h2>آزمایش سوم: تعریف رسمی قدر مطلق</h2><p class="lead">اکنون مشاهده را به زبان دقیق ریاضی تبدیل می‌کنیم.</p></div>
+  </div>
+  <div class="formula">|x| = فاصلهٔ x از صفر</div>
+  <p>قدر مطلق یک عدد حقیقی، فاصلهٔ آن عدد از مبدأ محور اعداد است. فاصله هیچ‌گاه منفی نیست.</p>
+  <div class="grid2">
+    <div class="rule"><b>اگر x ≥ ۰</b><div class="math">|x| = x</div><p class="small">عدد مثبت یا صفر، قدر مطلقش با خودش برابر است.</p></div>
+    <div class="rule"><b>اگر x < ۰</b><div class="math">|x| = −x</div><p class="small">برای عدد منفی، قرینهٔ آن را می‌گیریم.</p></div>
+  </div>
+  <div class="formula" style="font-size:20px">|x| = { x اگر x ≥ ۰ ؛ −x اگر x < ۰ }</div>
+  <h3>آزمایش محاسبه</h3>
+  <div class="inputrow">
+    <label for="calcNumber">یک عدد وارد کن:</label>
+    <input type="number" id="calcNumber" value="-7" min="-100000" max="100000">
+    <button class="btn" id="calcAbs">محاسبه کن</button>
+  </div>
+  <div class="answerline" id="calcResult" aria-live="polite">|−۷| = ۷</div>
+</section>
+
+<section class="card" id="properties">
+  <div class="cardhead">
+    <div class="numicon">💎</div>
+    <div><h2>آزمایش چهارم: خواص مهم</h2><p class="lead">هر خاصیت را انتخاب کن و یک نمونهٔ عددی ببین.</p></div>
+  </div>
+  <div class="options" id="propertyOptions">
+    <button class="option selected" data-property="nonnegative">۱. نامنفی بودن: |x| ≥ ۰</button>
+    <button class="option" data-property="opposite">۲. قرینه‌ها: |−x| = |x|</button>
+    <button class="option" data-property="product">۳. حاصل‌ضرب: |ab| = |a||b|</button>
+    <button class="option" data-property="square">۴. مربع: |x|² = x²</button>
+    <button class="option" data-property="triangle">۵. نامساوی مثلثی: |a+b| ≤ |a|+|b|</button>
+  </div>
+  <div class="answerline" id="propertyResult" aria-live="polite">مثال: |−۵| = ۵ و ۵ ≥ ۰؛ قدر مطلق همیشه نامنفی است.</div>
+  <div class="note">نکته: قدر مطلق جمع معمولاً برابر مجموع قدر مطلق‌ها نیست. مثلاً |۳ + (−۳)| = ۰، اما |۳| + |−۳| = ۶.</div>
+</section>
+
+<section class="card" id="equations">
+  <div class="cardhead">
+    <div class="numicon">🧮</div>
+    <div><h2>آزمایش پنجم: حل معادلات قدر مطلق</h2><p class="lead">مقدار و مرکز فاصله را تغییر بده و جواب‌ها را بررسی کن.</p></div>
+  </div>
+  <div class="formula">|x − c| = a</div>
+  <div class="twocol">
+    <div class="rule">
+      <label for="center">مرکز c</label>
+      <input type="number" id="center" value="2" min="-20" max="20" style="width:100%;margin-top:6px">
+    </div>
+    <div class="rule">
+      <label for="distance">فاصله a</label>
+      <input type="number" id="distance" value="4" min="-20" max="20" style="width:100%;margin-top:6px">
+    </div>
+  </div>
+  <button class="btn" id="solveEquation" style="margin-top:12px">حل کن و روی محور ببین</button>
+  <div class="answerline" id="equationResult" aria-live="polite">x = ۶ یا x = −۲</div>
+  <div class="axisbox" style="margin-top:14px">
+    <svg id="equationAxis" class="axis" viewBox="0 0 600 105" role="img" aria-label="نمایش جواب‌های معادله">
+      <line x1="25" y1="47" x2="575" y2="47" stroke="#a0a8c2" stroke-width="2"/>
+      <g id="equationTicks"></g><g id="equationPoints"></g>
+    </svg>
+  </div>
+  <div class="note">اگر a مثبت باشد، معمولاً دو جواب داریم. اگر a صفر باشد، یک جواب؛ و اگر a منفی باشد، هیچ جواب حقیقی نداریم.</div>
+</section>
+
+<section class="card" id="inequalities">
+  <div class="cardhead">
+    <div class="numicon">📏</div>
+    <div><h2>آزمایش ششم: نامعادلات قدر مطلق</h2><p class="lead">انتخاب کن که فاصله کمتر است یا بیشتر، سپس مجموعهٔ جواب را ببین.</p></div>
+  </div>
+  <div class="twocol">
+    <div class="rule">
+      <label for="ineqA">حد فاصله a</label>
+      <input type="number" id="ineqA" value="3" min="0" max="10" style="width:100%;margin-top:6px">
+    </div>
+    <div class="rule">
+      <label for="ineqType">نوع نامعادله</label>
+      <select id="ineqType" style="width:100%;margin-top:6px">
+        <option value="lt">|x| < a</option>
+        <option value="le">|x| ≤ a</option>
+        <option value="gt">|x| > a</option>
+        <option value="ge">|x| ≥ a</option>
+      </select>
+    </div>
+  </div>
+  <button class="btn cyan" id="solveInequality" style="margin-top:12px">نمایش جواب</button>
+  <div class="answerline" id="ineqResult" aria-live="polite">−۳ < x < ۳</div>
+  <div class="axisbox" style="margin-top:14px">
+    <svg id="ineqAxis" class="axis" viewBox="0 0 600 100" role="img" aria-label="نمایش مجموعه جواب نامعادله">
+      <line x1="25" y1="43" x2="575" y2="43" stroke="#a0a8c2" stroke-width="2"/>
+      <g id="ineqTicks"></g><line id="ineqSegment" x1="218" y1="43" x2="382" y2="43" stroke="#08a9bb" stroke-width="8" stroke-linecap="round"/>
+      <circle id="ineqLeft" cx="218" cy="43" r="7" fill="white" stroke="#6855df" stroke-width="3"/>
+      <circle id="ineqRight" cx="382" cy="43" r="7" fill="white" stroke="#6855df" stroke-width="3"/>
+    </svg>
+  </div>
+  <div class="grid2">
+    <div class="rule"><b>فاصله کمتر</b><div class="math">|x| < a</div><p class="small">نقاط بین دو مرز قرار می‌گیرند.</p></div>
+    <div class="rule"><b>فاصله بیشتر</b><div class="math">|x| > a</div><p class="small">نقاط بیرون دو مرز قرار می‌گیرند.</p></div>
+  </div>
+</section>
+
+<section class="card" id="practice">
+  <div class="cardhead">
+    <div class="numicon">🎯</div>
+    <div><h2>آزمایش هفتم: تمرین هوشمند</h2><p class="lead">هر بار سؤال تازه‌ای دریافت کن؛ راهنمایی بگیر و پاسخ را بررسی کن.</p></div>
+  </div>
+  <span class="tag" id="practiceType">محاسبه</span>
+  <h3 id="practicePrompt" style="direction:ltr;text-align:center;font-size:25px">|−۷| = ؟</h3>
+  <div class="options" id="practiceOptions"></div>
+  <div class="feedback" id="practiceFeedback" aria-live="polite"></div>
+  <div class="controls">
+    <button class="btn" id="newPractice">🎲 سؤال تازه</button>
+    <button class="btn alt" id="showHint">💡 راهنمایی</button>
+  </div>
+  <p class="small" id="practiceHint" aria-live="polite"></p>
+</section>
+
+<section class="card" id="quiz">
+  <div class="cardhead">
+    <div class="numicon">🏆</div>
+    <div><h2>آزمایش هشتم: چالش پایانی</h2><p class="lead">چهار سؤال از مفهوم، خواص، معادله و نامعادله.</p></div>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+    <span class="tag" id="quizCounter">سؤال ۱ از ۴</span>
+    <span class="numberpill" id="quizScore">امتیاز: ۰</span>
+  </div>
+  <div class="progress" style="margin-top:12px"><span id="quizProgress"></span></div>
+  <h3 id="quizQuestion" style="margin-top:20px">قدر مطلق −۱۲ کدام است؟</h3>
+  <div class="options" id="quizOptions"></div>
+  <div class="feedback" id="quizFeedback" aria-live="polite"></div>
+  <div class="controls">
+    <button class="btn" id="nextQuestion" disabled>سؤال بعدی ←</button>
+    <button class="btn alt" id="restartQuiz">شروع دوباره</button>
+  </div>
+  <div id="quizEnd" class="answerline" hidden></div>
+</section>
+
+<footer>
+  آزمایشگاه مجازی ریاضی · یادگیری از راه مشاهده، آزمایش و استدلال<br>
+  <span>ریاضی نهم | قدر مطلق</span>
+</footer>
+</main>
+</div>
+
+<script>
+"use strict";
+const $=s=>document.querySelector(s);
+const $$=s=>Array.from(document.querySelectorAll(s));
+const fa=n=>String(n).replace(/-/g,"−").replace(/\d/g,d=>"۰۱۲۳۴۵۶۷۸۹"[d]);
+const signed=n=>n>0?"+"+fa(n):fa(n);
+const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+const axisX=n=>300+n*25;
+function drawTicks(id,min=-10,max=10,step=2,y=47){
+  const g=$(id);g.innerHTML="";
+  for(let n=min;n<=max;n+=step){
+    const x=axisX(n);
+    if(x<20||x>580)continue;
+    g.insertAdjacentHTML("beforeend",`<line x1="${x}" y1="${y-5}" x2="${x}" y2="${y+5}" stroke="#a0a8c2" stroke-width="1.4"/><text x="${x}" y="${y+22}" font-size="12" fill="#747b98" text-anchor="middle">${fa(n)}</text>`);
+  }
+}
+drawTicks("#axisTicks",-10,10,2,77);
+drawTicks("#oppositeTicks",-10,10,2,45);
+drawTicks("#equationTicks",-10,10,2,47);
+drawTicks("#ineqTicks",-10,10,2,43);
+
+function updateAxis(){
+  const x=Number($("#xSlider").value),abs=Math.abs(x),px=axisX(x),zero=axisX(0);
+  $("#xValue").textContent=fa(x);$("#statX").textContent=fa(x);$("#statAbs").textContent=fa(abs);
+  $("#movingPoint").setAttribute("cx",px);$("#pointLabel").setAttribute("x",px);
+  $("#pointLabel").textContent=fa(x);
+  $("#distanceLine").setAttribute("x1",Math.min(px,zero));
+  $("#distanceLine").setAttribute("x2",Math.max(px,zero));
+  $("#distanceLabel").setAttribute("x",(px+zero)/2);
+  $("#distanceLabel").textContent=fa(abs)+" واحد";
+  $("#axisInsight").textContent=x<0?
+    "عدد منفی است؛ اما فاصله‌اش از صفر مثبت است.":
+    x>0?"عدد مثبت است؛ قدر مطلقش با خودش برابر است.":"نقطه روی صفر قرار دارد؛ فاصله و قدر مطلق هر دو صفرند.";
+  updateOpposite();
+}
+$("#xSlider").addEventListener("input",updateAxis);
+$("#randomPoint").addEventListener("click",()=>{$("#xSlider").value=Math.floor(Math.random()*21)-10;updateAxis()});
+$("#zeroPoint").addEventListener("click",()=>{$("#xSlider").value=0;updateAxis()});
+
+function updateOpposite(){
+  const x=Number($("#xSlider").value),y=-x;
+  $("#firstOpp").textContent=signed(x);$("#secondOpp").textContent=signed(y);
+  $("#firstOppAbs").textContent="قدر مطلق: "+fa(Math.abs(x));
+  $("#secondOppAbs").textContent="قدر مطلق: "+fa(Math.abs(y));
+  $("#oppA").setAttribute("cx",axisX(x));$("#oppB").setAttribute("cx",axisX(y));
+  $("#oppALabel").setAttribute("x",axisX(x));$("#oppBLabel").setAttribute("x",axisX(y));
+  $("#oppALabel").textContent=signed(x);$("#oppBLabel").textContent=signed(y);
+}
+$("#explainOpp").addEventListener("click",()=>{
+  $("#oppositeFeedback").className="feedback show good";
+  $("#oppositeFeedback").textContent="قدر مطلق فقط فاصله از صفر را اندازه می‌گیرد، نه جهت حرکت. قرینه‌ها در دو سوی صفر و در فاصلهٔ یکسان قرار دارند؛ بنابراین |x| = |−x|.";
+});
+
+$("#calcAbs").addEventListener("click",()=>{
+  const raw=$("#calcNumber").value;
+  if(raw.trim()===""){ $("#calcResult").textContent="لطفاً یک عدد وارد کن.";return;}
+  const x=Number(raw);
+  $("#calcResult").textContent="|"+fa(x)+"| = "+fa(Math.abs(x));
+});
+
+const propertyExamples={
+ nonnegative:"مثال: |−۵| = ۵ و ۵ ≥ ۰؛ قدر مطلق همیشه نامنفی است.",
+ opposite:"مثال: |−۶| = ۶ و |۶| = ۶؛ پس قدر مطلق دو عدد مخالف برابر است.",
+ product:"مثال: |−۲ × ۳| = |−۶| = ۶ و |−۲| × |۳| = ۲ × ۳ = ۶.",
+ square:"مثال: |−۴|² = ۴² = ۱۶ و (−۴)² = ۱۶.",
+ triangle:"مثال: |۲ + (−۵)| = ۳ و |۲| + |−۵| = ۷؛ پس ۳ ≤ ۷."
+};
+$("#propertyOptions").addEventListener("click",e=>{
+  const b=e.target.closest("[data-property]");if(!b)return;
+  $$("#propertyOptions .option").forEach(x=>x.classList.toggle("selected",x===b));
+  $("#propertyResult").textContent=propertyExamples[b.dataset.property];
+});
+
+function solveEquation(){
+  const c=Number($("#center").value),a=Number($("#distance").value);
+  if(!Number.isFinite(c)||!Number.isFinite(a)){return;}
+  const g=$("#equationPoints");g.innerHTML="";
+  let answers=[];
+  if(a<0)$("#equationResult").textContent="چون قدر مطلق منفی نمی‌شود، معادله جواب حقیقی ندارد.";
+  else{
+    answers=a===0?[c]:[c-a,c+a];
+    $("#equationResult").textContent=answers.length===1?
+      "یک جواب: x = "+fa(answers[0]):
+      "دو جواب: x = "+fa(answers[1])+" یا x = "+fa(answers[0]);
+    answers.forEach((v,i)=>{
+      if(v>=-11&&v<=11){
+        const cx=axisX(v);
+        g.insertAdjacentHTML("beforeend",`<circle cx="${cx}" cy="47" r="8" fill="${i?"#08a9bb":"#ff9f43"}" stroke="white" stroke-width="2"/><text x="${cx}" y="20" text-anchor="middle" font-size="13" fill="#4c3cba">${fa(v)}</text>`);
+      }
+    });
+  }
+}
+$("#solveEquation").addEventListener("click",solveEquation);
+$("#center").addEventListener("change",solveEquation);
+$("#distance").addEventListener("change",solveEquation);
+
+function solveInequality(){
+  const a=Number($("#ineqA").value),type=$("#ineqType").value;
+  if(!Number.isFinite(a)||a<0){$("#ineqResult").textContent="برای این نمایش، a باید صفر یا مثبت باشد.";return;}
+  const left=axisX(-a),right=axisX(a),segment=$("#ineqSegment");
+  const L=$("#ineqLeft"),R=$("#ineqRight");
+  let text="",outside=type==="gt"||type==="ge",inclusive=type==="le"||type==="ge";
+  segment.setAttribute("x1",outside?25:left);segment.setAttribute("x2",outside?575:right);
+  segment.setAttribute("stroke",outside?"#6855df":"#08a9bb");
+  if(outside){
+    segment.setAttribute("x1",25);segment.setAttribute("x2",left);
+    segment.insertAdjacentHTML("afterend",`<line x1="${right}" y1="43" x2="575" y2="43" stroke="#6855df" stroke-width="8" stroke-linecap="round" id="rightRay"/>`);
+  }
+  const old=$("#rightRay");if(old)old.remove();
+  if(outside){
+    segment.setAttribute("x1",25);segment.setAttribute("x2",left);
+    $("#ineqAxis").insertAdjacentHTML("beforeend",`<line id="rightRay" x1="${right}" y1="43" x2="575" y2="43" stroke="#6855df" stroke-width="8" stroke-linecap="round"/>`);
+  }else{segment.setAttribute("x1",left);segment.setAttribute("x2",right);}
+  [L,R].forEach((c,i)=>{
+    c.setAttribute("cx",i?right:left);
+    c.setAttribute("fill",inclusive?"#6855df":"white");
+    c.setAttribute("stroke","#6855df");
+  });
+  if(type==="lt")text="−"+fa(a)+" < x < "+fa(a);
+  if(type==="le")text="−"+fa(a)+" ≤ x ≤ "+fa(a);
+  if(type==="gt")text="x < −"+fa(a)+" یا x > "+fa(a);
+  if(type==="ge")text="x ≤ −"+fa(a)+" یا x ≥ "+fa(a);
+  if(a===0){
+    if(type==="lt"||type==="gt")text=type==="lt"?"هیچ جواب حقیقی ندارد.":"x ≠ ۰";
+    else text=type==="le"?"x = ۰":"همهٔ اعداد حقیقی";
+  }
+  $("#ineqResult").textContent=text;
+}
+$("#solveInequality").addEventListener("click",solveInequality);
+$("#ineqA").addEventListener("change",solveInequality);
+$("#ineqType").addEventListener("change",solveInequality);
+
+const practiceState={answer:null,hint:"",kind:""};
+function makePractice(){
+  const kind=Math.floor(Math.random()*4);
+  let prompt,answer,choices,hint,type;
+  if(kind===0){
+    const n=Math.floor(Math.random()*25)-12;answer=Math.abs(n);
+    prompt="|"+fa(n)+"| = ؟";type="محاسبه";
+    choices=[answer,answer+2,Math.max(0,answer-1),-answer];
+    hint="قدر مطلق، فاصله از صفر است؛ به جهت عدد توجه کن.";
+  }else if(kind===1){
+    const c=Math.floor(Math.random()*9)-4,a=Math.floor(Math.random()*5)+1;
+    answer=c+a;prompt="|x − ("+fa(c)+")| = "+fa(a)+" ؛ جواب بزرگ‌تر x؟";
+    type="معادله";choices=[answer,answer-a, c-a, answer+1];
+    hint="در معادلهٔ فاصله، جواب بزرگ‌تر در سمت راست مرکز قرار می‌گیرد.";
+  }else if(kind===2){
+    const a=Math.floor(Math.random()*6)+1;answer="between";
+    prompt="|x| < "+fa(a)+" یعنی؟";type="نامعادله";
+    choices=["x < −"+fa(a)+" یا x > "+fa(a),"−"+fa(a)+" < x < "+fa(a),"x = "+fa(a),"x > "+fa(a)];
+    hint="«کمتر از» یعنی نقطه‌ها بین دو مرز قرار می‌گیرند.";
+  }else{
+    const n=Math.floor(Math.random()*9)-4;answer="yes";
+    prompt="آیا |"+fa(n)+"| = |"+fa(-n)+"| ؟";type="قرینه‌ها";
+    choices=["بله، همیشه","خیر، فقط برای عدد مثبت","فقط وقتی عدد صفر باشد","فقط برای عددهای مثبت"];
+    hint="عددهای مخالف در دو سوی صفر قرار دارند، اما فاصله‌شان برابر است.";
+  }
+  if(Array.isArray(choices)&&typeof choices[0]==="number"){
+    choices=[...new Set(choices)];while(choices.length<4)choices.push(answer+choices.length+3);
+    choices=choices.sort(()=>Math.random()-.5).map(fa);
+  }
+  practiceState.answer=answer;practiceState.hint=hint;practiceState.kind=kind;
+  $("#practiceType").textContent=type;$("#practicePrompt").textContent=prompt;
+  $("#practiceHint").textContent="";
+  $("#practiceFeedback").className="feedback";$("#practiceFeedback").textContent="";
+  const box=$("#practiceOptions");box.innerHTML="";
+  choices.forEach(choice=>{
+    const b=document.createElement("button");b.className="option";b.textContent=choice;
+    b.addEventListener("click",()=>{
+      if(box.dataset.locked==="1")return;
+      box.dataset.locked="1";
+      const val=String(choice);
+      let ok=false;
+      if(answer==="between")ok=val===choices[1]&&val.startsWith("−");
+      else if(answer==="yes")ok=val==="بله، همیشه";
+      else ok=Number(val.replace(/[۰-۹]/g,d=>"۰۱۲۳۴۵۶۷۸۹".indexOf(d)).replace("−","-"))===answer;
+      b.classList.add("selected");
+      const fb=$("#practiceFeedback");fb.className="feedback show "+(ok?"good":"bad");
+      fb.textContent=ok?"آفرین! پاسخ درست است.": "این گزینه درست نیست. از راهنمایی استفاده کن و دوباره فکر کن.";
+      if(kind===0)fb.textContent+=" قدر مطلق "+$("#practicePrompt").textContent+" برابر فاصلهٔ عدد از صفر است.";
+      if(kind===1)fb.textContent+=" جواب بزرگ‌تر از مرکز به اندازهٔ فاصله قرار دارد.";
+      box.querySelectorAll("button").forEach(btn=>btn.disabled=true);
+    });
+    box.appendChild(b);
+  });
+  box.dataset.locked="0";
+}
+$("#newPractice").addEventListener("click",makePractice);
+$("#showHint").addEventListener("click",()=>$("#practiceHint").textContent=practiceState.hint);
+
+const questions=[
+ {q:"قدر مطلق −۱۲ کدام است؟",o:["−۱۲","۱۲","۰","−۱"],a:1,why:"قدر مطلق فاصله از صفر است و منفی نمی‌شود."},
+ {q:"اگر |x| = ۰ باشد، x چیست؟",o:["۱","−۱","۰","دو جواب دارد"],a:2,why:"تنها عددی که فاصله‌اش از صفر صفر است، خود صفر است."},
+ {q:"مجموعهٔ جواب |x| < ۲ کدام است؟",o:["x < −۲ یا x > ۲","−۲ < x < ۲","x = −۲ یا x = ۲","x > ۲"],a:1,why:"فاصله کمتر از دو واحد، نقاط داخل بازهٔ باز منفی دو تا مثبت دو است."},
+ {q:"معادلهٔ |x + ۱| = ۳ چه جواب‌هایی دارد؟",o:["x = ۲ یا x = −۴","x = ۴ یا x = −۲","x = ۳ یا x = −۱","x = −۲ یا x = ۴"],a:0,why:"x + ۱ = ۳ یا x + ۱ = −۳؛ بنابراین x = ۲ یا x = −۴."}
+];
+let qIndex=0,score=0,answered=false;
+function renderQuiz(){
+ const q=questions[qIndex];answered=false;
+ $("#quizCounter").textContent="سؤال "+fa(qIndex+1)+" از "+fa(questions.length);
+ $("#quizScore").textContent="امتیاز: "+fa(score);
+ $("#quizQuestion").textContent=q.q;
+ $("#quizFeedback").className="feedback";$("#quizFeedback").textContent="";
+ $("#nextQuestion").disabled=true;$("#quizEnd").hidden=true;
+ $("#quizProgress").style.width=(qIndex/questions.length*100)+"%";
+ const box=$("#quizOptions");box.innerHTML="";
+ q.o.forEach((label,i)=>{
+   const b=document.createElement("button");b.className="option";b.textContent=label;
+   b.addEventListener("click",()=>{
+     if(answered)return;answered=true;
+     const ok=i===q.a;if(ok)score++;
+     $("#quizScore").textContent="امتیاز: "+fa(score);
+     $("#quizFeedback").className="feedback show "+(ok?"good":"bad");
+     $("#quizFeedback").textContent=(ok?"آفرین! ":"پاسخ درست: "+q.o[q.a]+"؛ ")+q.why;
+     box.querySelectorAll("button").forEach((btn,j)=>{btn.disabled=true;if(j===i)btn.classList.add("selected")});
+     $("#nextQuestion").disabled=false;
+   });box.appendChild(b);
+ });
+}
+$("#nextQuestion").addEventListener("click",()=>{
+ if(!answered)return;
+ if(qIndex<questions.length-1){qIndex++;renderQuiz();}
+ else{
+   $("#quizProgress").style.width="100%";
+   $("#quizEnd").hidden=false;
+   const percent=score/questions.length*100;
+   $("#quizEnd").textContent="نتیجهٔ تو: "+fa(score)+" از "+fa(questions.length)+" ("+fa(percent)+"٪). "+(score===4?"عالی! بر مفهوم قدر مطلق مسلطی.":"با مرور آزمایش‌ها و تلاش دوباره، تسلطت را بیشتر کن.");
+   $("#nextQuestion").disabled=true;$("#nextQuestion").textContent="آزمون تمام شد";
+ }
+});
+$("#restartQuiz").addEventListener("click",()=>{qIndex=0;score=0;$("#nextQuestion").textContent="سؤال بعدی ←";renderQuiz();});
+function updateProgress(){
+ const ids=["experiment","opposites","definition","properties","equations","inequalities","practice","quiz"];
+ const visited=ids.filter(id=>location.hash==="#"+id).length;
+ const pct=location.hash?Math.round((ids.indexOf(location.hash.slice(1))+1)/ids.length*100):0;
+ $("#progressBar").style.width=pct+"%";$("#progressText").textContent=fa(pct)+"٪";
+ $$(".nav a").forEach(a=>a.classList.toggle("active",a.getAttribute("href")===location.hash));
+}
+window.addEventListener("hashchange",updateProgress);
+updateAxis();solveEquation();solveInequality();makePractice();renderQuiz();updateProgress();
+</script>
+</body>
+</html>
